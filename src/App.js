@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { Spoon } from "./pages/Spoon";
+import {Firebase} from './pages/Firebase'
  ;
  
 
@@ -9,8 +10,8 @@ function App() {
     <>
    
     <Routes>
-       <Route path="/" element={<Home></Home>}/>
-       <Route path="/search" element={<Spoon/>}/>
+       <Route path="/search" element={<Home></Home>}/>
+       <Route path="/" element={<Firebase/>}/>
         </Routes>
     </>
   );

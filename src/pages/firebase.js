@@ -1,4 +1,5 @@
  import {initializeApp} from'firebase/app'
+ import React from 'react';
  import {
      getFirestore,
      collection,
@@ -23,5 +24,20 @@ const firebaseConfig = {
 
 getDocs(colref)
 .then((snapshot)=>{
-    console.log(snapshot.docs)
+   let things=[]
+     snapshot.docs.forEach((doc)=>{
+     things.push({...doc.data(),id:doc.id})
+   })
+   console.log(things)
 })
+.catch(err=>{
+  console.log(err)
+})
+ 
+ 
+ export const Firebase = () => {
+   return (
+     <div>heklosh</div>
+   )
+ }
+ 
