@@ -1,14 +1,15 @@
 import { initializeApp } from "firebase/app";
-import React, { useRef,useState,useEffect,useId } from "react";
-import { getFirestore, collection, getDocs, addDoc,deleteDoc,doc } from "firebase/firestore";
+import React, { useRef,useState,useEffect,useId,useContext } from "react";
+import { getFirestore, collection, getDocs, addDoc,deleteDoc,doc,query,where } from "firebase/firestore";
 import FirebaseForm from "./FirebaseForm";
+import {MyContext} from './Context'
 
 
 export const Firebase = () => {
   const idd=useId()
   const [things,setThings]=useState( )
   const [load,setload]=useState(true )
-  const [referee,setreferee]=useState(true )
+  const {dbid,setdbid}=useContext(MyContext)
   const firebaseConfig = {
     apiKey: "AIzaSyBmf7hl87OMREvG-MRXz4yxev150NUWxNs",
     authDomain: "fir-auth-353d5.firebaseapp.com",
@@ -42,17 +43,25 @@ export const Firebase = () => {
   // console.log(things)
   },[things])
   
+  
   const titleref = useRef(null);
   const authorref = useRef(null);
   const deleteref=useRef(null)
  
-  const DeleteForm = (e) => {
+
+  
+  // removing items from the db
+  const DeleteForm = (e ) => {
     e.preventDefault();
-    const docref=doc(db,'Things',referee)
+    
+    const docref=doc(db,'Things' ,dbid )
+    console.log( dbid  )
 deleteDoc(docref).then(()=>{
-  deleteref.current.value='';
+  console.log(`deleted if of ${dbid}`)
 })
   };
+
+  // adding items to the db
   const AddForm = (e) => {
     e.preventDefault();
     const authortitle = {
@@ -65,10 +74,12 @@ deleteDoc(docref).then(()=>{
     })
    
   };
-   
+  //  wuery
+  let q=query(colref,where('author','==','one'))
+  // console.log(q)
   return (
     <ul>
-    {!load && <FirebaseForm AddForm={AddForm} DeleteForm={DeleteForm} things={things} authorref={authorref} titleref={titleref} idd={things.id} deleteref={deleteref}  referee={referee}/>}
+    {!load && <FirebaseForm AddForm={AddForm} DeleteForm={DeleteForm} things={things} authorref={authorref} titleref={titleref} idd={things.id} deleteref={deleteref} />}
     
     </ul>
   );
