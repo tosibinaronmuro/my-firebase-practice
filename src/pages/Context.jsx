@@ -46,10 +46,10 @@ export const Authprovider = ({ children }) => {
 
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-      console.log("user state changed", user);
+     
       setLoading(false);
     });
-    return unsubscribe();
+    return ()=> unsubscribe() ;
   }, []);
   // the global props and states needed for auth
   const value = {
