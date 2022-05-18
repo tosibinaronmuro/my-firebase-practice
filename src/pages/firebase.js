@@ -2,13 +2,14 @@ import {initializeApp} from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
  
 const Firebase=initializeApp( {
-  apiKey: "AIzaSyDsd6i4na-eKG8rwCvl1zDjYYICI3oQPUQ",
-  authDomain: "auth-test-e62bf.firebaseapp.com",
-  projectId: "auth-test-e62bf",
-  storageBucket: "auth-test-e62bf.appspot.com",
-  messagingSenderId: "186458044125",
-  appId: "1:186458044125:web:db090b08ef8e0d2e448d34"
+  apiKey:process.env.REACT_APP_NAME_OF_THE_API_KEY,
+  authDomain:process.env.REACT_APP_NAME_OF_THE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_NAME_OF_THE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_NAME_OF_THE_STORAGE_BUCKET,
+  messagingSenderId:process.env.REACT_APP_NAME_OF_THE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_NAME_OF_THE_APP_ID
 
+  
 })
  
 
